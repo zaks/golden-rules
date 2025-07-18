@@ -136,11 +136,15 @@ project-root/
 
 ```text
 project-root/
+├── bin/                   # Executable scripts and entry points
+├── scripts/               # Development and build scripts
 ├── app/                   # App Router pages and layouts
 ├── components/            # Reusable UI components
 ├── lib/                   # Utility functions and configurations
 ├── public/                # Static assets
 ├── styles/                # Global styles (if not using Tailwind exclusively)
+├── docs/                  # Documentation
+├── tests/                 # Test files
 └── README.md
 ```
 
