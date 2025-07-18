@@ -20,19 +20,21 @@
 
 - ALWAYS add explicit types to all function parameters, variables, and return types
 
-- ALWAYS run `pnpm build` or appropriate linter command before considering any code changes complete
+- ALWAYS run build or appropriate linter command before considering any code changes complete
 
 - Fix all linter and TypeScript errors immediately - don't leave them for the user to fix
 
 - When making changes to multiple files, check each one for type errors
 
+- These rules apply to both frontend and backend TypeScript code
+
 ### Python Best Practices
 
 - ALWAYS add type hints to all function parameters, variables, and return types
 
-- Use `from typing import` for complex types like `List`, `Dict`, `Optional`, `Union`, `Callable`
-
 - Use modern Python 3.9+ syntax when available (e.g., `list[str]` instead of `List[str]`)
+
+- Use `from typing import` only for types not available as built-ins: `Optional`, `Union`, `Callable`, `Protocol`
 
 - ALWAYS use type annotations for function definitions:
   ```python
@@ -40,7 +42,7 @@
       return {"processed": len(items)}
   ```
 
-- Use `Optional[T]` or `T | None` for nullable parameters
+- Use `T | None` for nullable parameters (Python 3.10+) or `Optional[T]` for older versions
 
 - Add docstrings with parameter and return type documentation using Google or NumPy style
 
@@ -60,6 +62,8 @@
 
 - Use meaningful variable names and avoid single-letter variables except for short loops
 
+- **ALWAYS maintain a requirements.txt file** for Python projects with pinned dependency versions
+
 ### Directory Layout
 
 Projects should follow this standard directory structure:
@@ -68,17 +72,29 @@ Projects should follow this standard directory structure:
 project-root/
 ├── bin/                    # Executable scripts and entry points
 ├── scripts/               # Development and build scripts
-├── client/                # Frontend/client-side code
-├── server/                # Backend/server-side code
+├── src/                   # Source code (for Next.js: app/, pages/, components/)
 ├── docs/                  # Documentation
 ├── tests/                 # Test files
 └── README.md
 ```
 
+**For Next.js projects**, follow the Next.js App Router structure:
+```
+project-root/
+├── app/                   # App Router pages and layouts
+├── components/            # Reusable UI components
+├── lib/                   # Utility functions and configurations
+├── public/                # Static assets
+├── styles/                # Global styles (if not using Tailwind exclusively)
+└── README.md
+```
+
 - **`bin/`** - Contains executable scripts, CLI tools, and main entry points
 - **`scripts/`** - Development scripts, build tools, deployment scripts, and utilities
-- **`client/`** - All frontend code, React components, styles, and client-side assets
-- **`server/`** - Backend code, APIs, database models, and server-side logic
+- **`src/`** - Main source code directory (structure depends on framework)
+- **`app/`** - Next.js App Router pages, layouts, and route handlers
+- **`components/`** - Reusable UI components
+- **`lib/`** - Utility functions, configurations, and shared logic
 - Keep related files together within their respective directories
 - Use consistent naming conventions within each directory
 
@@ -98,7 +114,7 @@ project-root/
 
 - Use `.gitignore` to prevent accidental commits of temporary files and build artifacts
 
-- **ALWAYS create and maintain a README.md file** with project overview, setup instructions, and usage examples
+- **Create and maintain a README.md file when explicitly requested** with project overview, setup instructions, and usage examples
 
 - **ALWAYS create and maintain specification files** and keep them synchronized with the codebase:
   - SQL schema files for database structure
