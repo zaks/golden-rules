@@ -1,4 +1,6 @@
-### Critical Rules - DO NOT VIOLATE
+# Golden Rules - DO NOT VIOLATE
+
+## Critical Rules - DO NOT VIOLATE
 
 - **NEVER create mock data or simplified components** unless explicitly told to do so
 
@@ -37,6 +39,7 @@
 - Use `from typing import` only for types not available as built-ins: `Optional`, `Union`, `Callable`, `Protocol`
 
 - ALWAYS use type annotations for function definitions:
+
   ```python
   def process_data(items: list[str], max_count: int = 10) -> dict[str, int]:
       return {"processed": len(items)}
@@ -68,7 +71,7 @@
 
 Projects should follow this standard directory structure:
 
-```
+```text
 project-root/
 ├── bin/                    # Executable scripts and entry points
 ├── scripts/               # Development and build scripts
@@ -79,7 +82,8 @@ project-root/
 ```
 
 **For Next.js projects**, follow the Next.js App Router structure:
-```
+
+```text
 project-root/
 ├── app/                   # App Router pages and layouts
 ├── components/            # Reusable UI components
@@ -152,7 +156,7 @@ project-root/
 
 - **Prefer self-explanatory code over comments** - if you need a comment to explain what code does, consider refactoring for clarity
 
-- When comments are necessary, explain *why* something is done, not *what* is being done
+- When comments are necessary, explain _why_ something is done, not _what_ is being done
 
 - Remove outdated or redundant comments that no longer match the code
 
@@ -197,7 +201,7 @@ project-root/
 ### Frontend Technology Stack
 
 - **Use Next.js for frontend development** with the following boilerplate template:
-  - Template: https://github.com/ixartz/Next-js-Boilerplate
+  - Template: <https://github.com/ixartz/Next-js-Boilerplate>
   - Follow the established patterns and structure from this template
 
 - **ALWAYS use TypeScript instead of JavaScript** for all frontend and backend code
