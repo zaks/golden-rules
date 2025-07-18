@@ -66,9 +66,9 @@ Python type hints and modern syntax improve code reliability, performance, and m
 
 - **ALWAYS add comprehensive type hints to all function parameters, variables, and return types** - this enables static analysis, improves IDE support, prevents runtime type errors, and makes code self-documenting for team collaboration
 
-- **Use modern Python 3.9+ syntax when available** (e.g., `list[str]` instead of `List[str]`) - this reduces import overhead, improves readability, and aligns with current Python standards
+- **Use modern Python 3.10+ syntax exclusively** (e.g., `list[str]` instead of `List[str]`) - this reduces import overhead, improves readability, and aligns with current Python standards
 
-- **Import from typing only for advanced types** - use `Optional`, `Union`, `Callable`, `Protocol` only when built-in types are insufficient, which keeps imports clean and leverages language evolution
+- **Import from typing only for advanced types** - use `Callable`, `Protocol`, `TypeVar`, `Generic` only when built-in types are insufficient, which keeps imports clean and leverages language evolution
 
 - **ALWAYS use explicit type annotations in function definitions** - this provides clear contracts and enables powerful development tools:
 
@@ -77,11 +77,17 @@ Python type hints and modern syntax improve code reliability, performance, and m
 ```python
 def process_data(items: list[str], max_count: int = 10) -> dict[str, int]:
     return {"processed": len(items)}
+
+def find_user(user_id: int) -> User | None:
+    return database.get_user(user_id)
+
+def merge_configs(base: dict[str, str], override: dict[str, str] | None = None) -> dict[str, str]:
+    return {**base, **(override or {})}
 ```
 
 </code_example>
 
-- **Use union syntax appropriately** - `T | None` for Python 3.10+ or `Optional[T]` for older versions to maintain compatibility while expressing nullable types clearly
+- **Use modern union syntax exclusively** - always use `T | None` for nullable types and `str | int` for unions, eliminating the need for `Optional` and `Union` imports
 
 - **Add comprehensive docstrings using Google or NumPy style** - this provides usage examples, parameter documentation, and return value specifications for API clarity
 
