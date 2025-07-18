@@ -1,4 +1,4 @@
-# Commit Guidelines
+# Commit changes
 
 ## Pre-Commit Checklist
 
@@ -36,12 +36,14 @@ git commit -m "Update README with UserProfile component usage"
 ## Commit Message Format
 
 ### Structure
+
 - **Brief but complete** - explain what and why, not how
 - **Use imperative mood** - "Add feature" not "Added feature"
 - **Keep first line under 50 characters** when possible
 - **Add detailed explanation if needed** in the body
 
 ### Good Examples
+
 ```
 Add user authentication middleware
 
@@ -53,6 +55,7 @@ Refactor database connection handling for better error recovery
 ```
 
 ### Bad Examples
+
 ```
 fixes
 updated stuff

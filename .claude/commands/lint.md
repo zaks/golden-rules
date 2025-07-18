@@ -1,4 +1,4 @@
-# Lint Guidelines
+# Lint code and documentation files
 
 ## Pre-Lint Checklist
 
@@ -6,31 +6,43 @@
 - **Fix all linting errors immediately** - don't leave them for later
 - **Run type checking alongside linting** to catch both style and type issues
 - **Use project-specific linting configurations** when available
+- **When --fix is within $ARGUMENTS, automatically fix all fixable linting issues**
 
 ## Common Linting Commands by Language
 
 ### TypeScript/JavaScript (Node.js/Next.js)
+
 ```bash
 # ESLint for code quality and style
 npm run lint
 # or
 npx eslint . --ext .ts,.tsx,.js,.jsx
 
+# When --fix is in $ARGUMENTS: automatically fix all fixable issues
+npm run lint -- --fix
+# or
+npx eslint . --ext .ts,.tsx,.js,.jsx --fix
+
 # TypeScript type checking
 npm run type-check
 # or
 npx tsc --noEmit
 
-# Prettier for code formatting
+# Prettier for code formatting (always auto-fixes)
 npm run format
 # or
 npx prettier --write .
 ```
 
 ### Python
+
 ```bash
 # Ruff for linting and formatting (replaces flake8, black, isort)
 ruff check .
+ruff format .
+
+# When --fix is in $ARGUMENTS: automatically fix all fixable issues
+ruff check . --fix
 ruff format .
 
 # mypy for type checking
@@ -41,15 +53,20 @@ pylint **/*.py
 ```
 
 ### CSS
+
 ```bash
 # stylelint for CSS linting
 npx stylelint "**/*.css"
 
-# Prettier for CSS formatting
+# When --fix is in $ARGUMENTS: automatically fix all fixable issues
+npx stylelint "**/*.css" --fix
+
+# Prettier for CSS formatting (always auto-fixes)
 npx prettier --write "**/*.css"
 ```
 
 ### HTML
+
 ```bash
 # htmlhint for HTML linting
 npx htmlhint "**/*.html"
@@ -59,23 +76,30 @@ npx prettier --write "**/*.html"
 ```
 
 ### Markdown
+
 ```bash
 # markdownlint for Markdown linting
 npx markdownlint "**/*.md"
 
-# Prettier for Markdown formatting
+# When --fix is in $ARGUMENTS: automatically fix all fixable issues
+npx markdownlint "**/*.md" --fix
+
+# Prettier for Markdown formatting (always auto-fixes)
 npx prettier --write "**/*.md"
 ```
 
 ## Linting Workflow
 
 1. **Check for existing lint scripts** in package.json, Makefile, or project docs
-2. **Run linting tools in this order**:
+2. **If --fix is within $ARGUMENTS, run auto-fix commands first**:
+   - Code formatting (prettier, ruff format)
+   - Auto-fixable style issues (eslint --fix, ruff check --fix, stylelint --fix, markdownlint --fix)
+3. **Run linting tools in this order**:
    - Code formatting (prettier, ruff format)
    - Style checking (eslint, ruff check, stylelint, htmlhint, markdownlint)
    - Type checking (tsc, mypy)
-3. **Fix issues immediately** - don't proceed with broken linting
-4. **Re-run linting** after fixes to ensure all issues are resolved
+4. **Fix remaining issues immediately** - don't proceed with broken linting
+5. **Re-run linting** after fixes to ensure all issues are resolved
 
 ## Configuration Files to Look For
 
@@ -95,6 +119,8 @@ npx prettier --write "**/*.md"
 - **Add type annotations** when linting suggests them
 - **Fix warnings, not just errors** - warnings often indicate code quality issues
 - **Use IDE integration** for real-time linting feedback during development
+- **When --fix is within $ARGUMENTS, always run auto-fix commands before manual inspection**
+- **Auto-fix safely** - review changes made by auto-fix tools before committing
 
 ## Troubleshooting
 
