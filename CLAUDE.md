@@ -175,6 +175,14 @@ project-root/
   - Configure watch modes for backend services
   - Implement fast feedback loops for testing and debugging
 
+- **NEVER start applications automatically** unless explicitly requested by the user
+
+- **Write startup scripts using tmux** for multi-service applications:
+  - Create separate tmux windows for backend, frontend, and other services
+  - Use meaningful window names (e.g., "backend", "frontend", "database")
+  - Include proper error handling and startup sequencing
+  - Provide clear instructions for using the startup script
+
 ### Production Build Rules
 
 - **Production builds have different requirements** than development:
